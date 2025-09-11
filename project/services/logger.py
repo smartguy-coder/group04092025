@@ -19,5 +19,7 @@ def get_logger():
 
 logger = get_logger()
 
-logger.info('some info log')
+logger.info('some info log 333333333333333', extra={"user_id": 23556})
 logger.error('some error log')
+
+
