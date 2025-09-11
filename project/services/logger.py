@@ -19,4 +19,5 @@ def get_logger():
 
 logger = get_logger()
 
-
+logger.info('some info log')
+logger.error('some error log')
