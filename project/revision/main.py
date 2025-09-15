@@ -9,6 +9,16 @@ def main():
         "result": result
 
     })
+    logger.debug(f"Function is_number_bigger_than_given was called", extra={
+        "candidate_number": 5,
+        "result": result
+
+    })
+    logger.error(f"Function is_number_bigger_than_given was called", extra={
+        "candidate_number": 5,
+        "result": result
+
+    })
 
     result = is_number_bigger_than_given(candidate_number=66, threshold=1)
 
