@@ -10,6 +10,7 @@
 # print(id(some))
 # print(id(print), 55555555555)
 from typing import Callable
+from getpass import getpass
 
 
 def foo(number: int = 6) -> int:
@@ -76,7 +77,29 @@ def call_callable_function_master(func: Callable) -> Callable:
 # result = foo2(arg='555+++++')
 # print(result)
 
-@call_callable_function_master
+
+admin = {
+    'login': 'admin',
+    'password': '1234'
+}
+
+
+def only_admin_allowed(func: Callable) -> Callable:
+    def inner(*args, **kwargs):
+        print("before call --------------------")
+        user_login = input('Enter your login: ')
+        user_password = getpass('Enter your password: ')
+        if user_login == admin["login"] and user_password == admin["password"]:
+            result = func(*args, **kwargs)
+            print("after call --------------------")
+            return result
+
+        return {'status': 403}
+
+    return inner
+
+
+@only_admin_allowed
 def final_foo(number: int = 6) -> int:
     print("function final_foo was called")
     return number + 5
@@ -91,5 +114,5 @@ def final_foo333(number: int = 6) -> int:
 result = final_foo(23)
 print(result)
 
-result = final_foo333(100)
-print(result)
+# result = final_foo333(100)
+# print(result)
