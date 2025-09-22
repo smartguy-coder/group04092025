@@ -57,10 +57,39 @@ def call_callable_function_master(func: Callable) -> Callable:
         print(232323232)
         print(args, kwargs)
         print(func)
-        pass
+        print("before call --------------------")
+        result = func(*args, **kwargs)
+        print("after call --------------------")
+        if isinstance(result, int):
+            result *= 1000
+        return result
 
     return inner
 
-res = call_callable_function_master(func=foo)
 
-res(b=555)
+# foo = call_callable_function_master(func=foo)
+# result = foo(number=555)
+# print(result)
+#
+#
+# foo2 = call_callable_function_master(func=foo2)
+# result = foo2(arg='555+++++')
+# print(result)
+
+@call_callable_function_master
+def final_foo(number: int = 6) -> int:
+    print("function final_foo was called")
+    return number + 5
+
+
+@call_callable_function_master
+def final_foo333(number: int = 6) -> int:
+    print("function final_foo333 was called")
+    return number + 6666666666
+
+
+result = final_foo(23)
+print(result)
+
+result = final_foo333(100)
+print(result)
