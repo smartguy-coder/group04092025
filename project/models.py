@@ -20,6 +20,8 @@ class FinancialCalculator:
 
 class Person(FinancialCalculator):
     def __init__(self, name: str):
+        if not name.strip():
+            raise ValueError('Name not provided')
         super().__init__()
         self.name = name.title()
         self.ipn = uuid.uuid4()
@@ -50,7 +52,7 @@ class BankAccount:
 class Bank(FinancialCalculator):
     def __init__(self, name: str):
         super().__init__()
-        self.__name: str = f'PAT {name.upper()}'
+        self.__name: str = f'PAT {name.strip().upper()}'
 
     def open_account(self, client: Person) -> BankAccount:
         new_account = BankAccount(client)
@@ -66,34 +68,34 @@ class Bank(FinancialCalculator):
         return f'<Come to us. We are "{self.__name}", and we have opened {len(self.accounts)} accounts already and accumulated {self.total_money}grn>'
 
 
-person_alex = Person(name='Alex')
-person_marta = Person(name='Marta')
-person_bob = Person(name='Bob')
-print(person_alex)
-# print(int("000002415ED4ED50", 16))
-
-monobank = Bank('mono')
-print(monobank)
-
-account = monobank.open_account(person_alex)
-account.deposit(5000)
-account.deposit(2000)
-print(person_alex)
-
-print('walking....')
-print(monobank.total_money)
-
-alex_card = person_alex.get_first_account()
-alex_card.withdraw(500)
-
-# monobank.name = 'd,fjvbhjdfkbhjkkkkkfg'
-# monobank.total_money = 5555 error
-new_bank = Bank("ProstoKredit")
-new_bank.open_account(person_alex).deposit(6666)
-new_bank.open_account(person_bob).deposit(14000)
-
-print('walking....')
-
-person_bob.get_first_account().transfer(4000, person_alex.get_first_account())
-
-pass
+# person_alex = Person(name='Alex')
+# person_marta = Person(name='Marta')
+# person_bob = Person(name='Bob')
+# print(person_alex)
+# # print(int("000002415ED4ED50", 16))
+#
+# monobank = Bank('mono')
+# print(monobank)
+#
+# account = monobank.open_account(person_alex)
+# account.deposit(5000)
+# account.deposit(2000)
+# print(person_alex)
+#
+# print('walking....')
+# print(monobank.total_money)
+#
+# alex_card = person_alex.get_first_account()
+# alex_card.withdraw(500)
+#
+# # monobank.name = 'd,fjvbhjdfkbhjkkkkkfg'
+# # monobank.total_money = 5555 error
+# new_bank = Bank("ProstoKredit")
+# new_bank.open_account(person_alex).deposit(6666)
+# new_bank.open_account(person_bob).deposit(14000)
+#
+# print('walking....')
+#
+# person_bob.get_first_account().transfer(4000, person_alex.get_first_account())
+#
+# pass
