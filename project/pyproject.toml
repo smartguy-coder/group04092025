@@ -8,4 +8,6 @@ dependencies = [
     "logtail-python>=0.3.4",
     "pyjwt>=2.10.1",
     "pytest>=8.4.2",
+    "python-dotenv>=1.1.1",
+    "redis>=6.4.0",
 ]
